@@ -14,6 +14,15 @@ ENV LC_ALL C.UTF-8
 # https://github.com/phusion/baseimage-docker/issues/58#issuecomment-47995343
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
+# nl ubuntu package mirror is unreliable, using 
+# Packages and Updates from the Hetzner Ubuntu Mirror
+RUN cat << EOF > /etc/apt/sources.list
+deb http://mirror.hetzner.com/ubuntu/packages jammy           main restricted universe multiverse
+deb http://mirror.hetzner.com/ubuntu/packages jammy-updates   main restricted universe multiverse
+deb http://mirror.hetzner.com/ubuntu/packages jammy-backports main restricted universe multiverse
+deb http://mirror.hetzner.com/ubuntu/packages jammy-security  main restricted universe multiverse
+EOF
+
 # Global dependencies
 RUN apt-get -q update \
  && apt-get -q install -y --no-install-recommends apt-utils \
