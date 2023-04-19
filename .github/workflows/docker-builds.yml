@@ -52,6 +52,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
+          file: Dockerfile.cuda-base
           build-args: |
             ubuntuImage=${{github.event.inputs.base_image}}
           context: .
@@ -85,6 +86,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
+          file: Dockerfile.cuda-hub
           build-args: |
             hubVersion=${{github.event.inputs.hub_version}}
           context: .
@@ -118,6 +120,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
+          file: Dockerfile.cuda-editor
           build-args: |
             module=${{github.event.inputs.module}}
             changeSet=${{github.event.inputs.change_set}}
