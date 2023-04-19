@@ -1,4 +1,4 @@
-name: Build Docker Images
+name: Build Selenium Image
 on:
   workflow_dispatch:
 jobs:
