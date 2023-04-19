@@ -16,7 +16,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 
 # nl ubuntu package mirror is unreliable, using 
 # Packages and Updates from the Hetzner Ubuntu Mirror
-RUN cat << EOF > /etc/apt/sources.list
+RUN <<EOF cat >> /etc/apt/sources.list
 deb http://mirror.hetzner.com/ubuntu/packages jammy           main restricted universe multiverse
 deb http://mirror.hetzner.com/ubuntu/packages jammy-updates   main restricted universe multiverse
 deb http://mirror.hetzner.com/ubuntu/packages jammy-backports main restricted universe multiverse
