@@ -13,13 +13,14 @@ RUN mkdir -p /home/player1/.local/bin && \
 USER player1
 
 ENV URL_BASE="https://github.com/mozilla/geckodriver/releases/download"
-RUN sudo apt-get update && \
-    DEBIAN_FRONTEND=noninteractive \
-    sudo apt-get install -y firefox-esr && \
-    pip3 install selenium && \
-    export PACKAGE_NAME=$(echo geckodriver-v${GEKKO_VERSION}-linux64.tar.gz) && \
-    export GEKKO_URL=$(echo "$URL_BASE/v${GEKKO_VERSION}/${PACKAGE_NAME}") && \
-  sudo wget $GEKKO_URL && \
+
+RUN sudo apt-get install -y firefox-esr && \
+    pip3 install selenium
+
+RUN export PACKAGE_NAME=$(echo geckodriver-v${GEKKO_VERSION}-linux64.tar.gz) && \
+RUN export GEKKO_URL=$(echo "$URL_BASE/v${GEKKO_VERSION}/${PACKAGE_NAME}") && \
+  
+RUN sudo wget $GEKKO_URL && \
   sudo tar xvfz geckodriver-v"${GEKKO_VERSION}"-linux64.tar.gz && \
   sudo rm geckodriver-v"${GEKKO_VERSION}"-linux64.tar.gz && \
   sudo mv geckodriver ~/.local/bin
