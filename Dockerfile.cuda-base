@@ -1,6 +1,11 @@
 ARG ubuntuImage="nvidia/cuda:12.1.0-base-ubuntu22.04"
 FROM $ubuntuImage
 
+# Unityhub doesnt work with updated verisons of SSL so we have to install an older version
+# see https://forum.unity.com/threads/workaround-for-libssl-issue-on-ubuntu-22-04.1271405/
+ENV OLD_SSL_DEB="http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb"
+ENV PATH="$PATH:/home/player1/.local/bin"
+
 # Fixes a Gradle crash while building for Android on Unity 2019 when there are accented characters in environment variables
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
@@ -75,4 +80,7 @@ ENV UNITY_PATH="/opt/unity"
 # create a user for non-root operation
 RUN useradd -ms /bin/bash player1 && \
     usermod -aG sudo player1 && \
-    echo 'player1 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+    echo 'player1 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+    wget ${OLD_SSL_DEB} && \
+    sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb && \
+    rm libssl1.1_1.1.1f-1ubuntu2_amd64.deb
