@@ -4,7 +4,8 @@ COPY sources.list.datapacket /etc/apt/sources.list
 
 RUN apt-get update && yes |apt-get install -y sudo
 
-RUN mkdir -p /home/player1/.local/bin && \
+RUN echo 'player1 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+    mkdir -p /home/player1/.local/bin && \
     mkdir -p /home/player1/.local/lib && \
     chown player1:player1 /home/player1/.local/bin && \
     chown player1:player1 /home/player1/.local/lib
