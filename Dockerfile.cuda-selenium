@@ -16,8 +16,6 @@ RUN sudo chown player1:player1 /home/player1/.local/lib
 # Swap to user account for install so pip doesnt break
 USER player1
 
-ENV URL_BASE="https://github.com/mozilla/geckodriver/releases/download"
-
 RUN sudo add-apt-repository -y ppa:mozillateam/ppa
 
 RUN sudo apt-get install -y firefox-esr
@@ -26,7 +24,7 @@ RUN pip3 install selenium
 
 ENV GEKKO_VERSION="0.32.0"
 ENV PACKAGE_NAME="geckodriver-v0.32.0-linux64.tar.gz"
-ENV GEKKO_URL=$(echo "$URL_BASE/v${GEKKO_VERSION}/${PACKAGE_NAME}")
+ENV GEKKO_URL="https://github.com/mozilla/geckodriver/releases/download/0.32.0/geckodriver-v0.32.0-linux64.tar.gz""
   
 RUN sudo wget $GEKKO_URL && \
   sudo tar xvfz geckodriver-v"${GEKKO_VERSION}"-linux64.tar.gz && \
