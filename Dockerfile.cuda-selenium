@@ -24,6 +24,7 @@ RUN sudo apt-get install -y firefox-esr
 
 RUN pip3 install selenium
 
+ENV GEKKO_VERSION="0.32.0"
 ENV PACKAGE_NAME=$(echo geckodriver-v${GEKKO_VERSION}-linux64.tar.gz)
 ENV GEKKO_URL=$(echo "$URL_BASE/v${GEKKO_VERSION}/${PACKAGE_NAME}")
   
