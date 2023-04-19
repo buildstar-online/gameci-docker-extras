@@ -1,4 +1,4 @@
-FROM hub as selenium
+FROM deserializeme/gamecicudahub as selenium
 
 RUN mkdir -p /home/runner/.local/bin && \
     mkdir -p /home/runner/.local/lib && \
