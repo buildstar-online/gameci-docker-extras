@@ -1,4 +1,4 @@
-ARG baseImage="base"
+ARG baseImage="deserializeme/gcicudabase"
 FROM $baseImage
 ARG hubVersion="3.4.2-beta.1"
 
