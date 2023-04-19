@@ -2,7 +2,7 @@ FROM deserializeme/gcicudahub:latest as selenium
 
 COPY sources.list.datapacket /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y sudo
+RUN apt-get update && yes |apt-get install -y sudo
 
 RUN mkdir -p /home/player1/.local/bin && \
     mkdir -p /home/player1/.local/lib && \
