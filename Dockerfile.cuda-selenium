@@ -24,7 +24,7 @@ RUN sudo apt-get install -y firefox-esr
 
 RUN pip3 install selenium
 
-RUN export PACKAGE_NAME=$(echo geckodriver-v${GEKKO_VERSION}-linux64.tar.gz) && \
+RUN export PACKAGE_NAME=$(echo geckodriver-v${GEKKO_VERSION}-linux64.tar.gz)
 RUN export GEKKO_URL=$(echo "$URL_BASE/v${GEKKO_VERSION}/${PACKAGE_NAME}")
   
 RUN sudo wget $GEKKO_URL && \
