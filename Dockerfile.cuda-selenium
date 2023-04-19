@@ -2,8 +2,9 @@ FROM deserializeme/gcicudahub:latest as selenium
 
 COPY sources.list.datapacket /etc/apt/sources.list
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y sudo && \
-    mkdir -p /home/player1/.local/bin && \
+RUN apt-get update && apt-get install -y sudo
+
+RUN mkdir -p /home/player1/.local/bin && \
     mkdir -p /home/player1/.local/lib && \
     chown player1:player1 /home/player1/.local/bin && \
     chown player1:player1 /home/player1/.local/lib
