@@ -60,6 +60,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
   build-hub:
+    needs: build-base
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -92,6 +93,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           
   build-editor:
+    needs: [build-hub, build-base]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
