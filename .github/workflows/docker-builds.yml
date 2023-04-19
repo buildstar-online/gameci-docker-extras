@@ -26,6 +26,10 @@ on:
         description: 'Base Image'
         required: true
         default: 'nvidia/cuda:12.1.0-base-ubuntu22.04'
+      ubuntu_mirror:
+        description: 'Base Image'
+        required: true
+        default: 'sources.list.hetzner'
 jobs:
   build-base:
     runs-on: self-hosted
@@ -54,6 +58,7 @@ jobs:
         with:
           file: Dockerfile.cuda-base
           build-args: |
+            ubuntuMirror=${{github.event.inputs.ubuntu_mirror}}
             ubuntuImage=${{github.event.inputs.base_image}}
           context: .
           push: ${{ github.event_name != 'pull_request' }}
