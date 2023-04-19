@@ -16,6 +16,8 @@ USER player1
 
 ENV URL_BASE="https://github.com/mozilla/geckodriver/releases/download"
 
+RUN sudo add-apt-repository -y ppa:mozillateam/ppa
+RUN 
 RUN sudo apt-get install -y firefox-esr
 
 RUN pip3 install selenium
