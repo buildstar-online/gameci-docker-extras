@@ -82,5 +82,5 @@ RUN useradd -ms /bin/bash player1 && \
     usermod -aG sudo player1 && \
     echo 'player1 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     wget ${OLD_SSL_DEB} && \
-    sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb && \
+    dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb && \
     rm libssl1.1_1.1.1f-1ubuntu2_amd64.deb
