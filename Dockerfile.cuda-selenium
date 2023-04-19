@@ -1,9 +1,10 @@
 FROM deserializeme/gcicudahub:latest as selenium
 
 COPY sources.list.datapacket /etc/apt/sources.list
-COPY mozilla-firefox /etc/apt/preferences.d/mozilla-firefox
 
-RUN apt-get update && yes |apt-get install -y sudo
+RUN apt-get update && yes |apt-get install -y sudo software-properties-common
+
+COPY mozilla-firefox /etc/apt/preferences.d/mozilla-firefox
 
 RUN echo 'player1 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
     
