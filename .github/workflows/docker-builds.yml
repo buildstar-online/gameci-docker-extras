@@ -58,7 +58,7 @@ jobs:
         with:
           file: Dockerfile.cuda-base
           build-args: |
-            ubuntuMirror=${{github.event.inputs.ubuntu_mirror}}
+            sourcesList=${{github.event.inputs.ubuntu_mirror}}
             ubuntuImage=${{github.event.inputs.base_image}}
           context: .
           push: ${{ github.event_name != 'pull_request' }}
