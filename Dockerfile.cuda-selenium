@@ -1,6 +1,7 @@
 FROM deserializeme/gcicudahub:latest as selenium
 
 COPY sources.list.datapacket /etc/apt/sources.list
+COPY mozilla-firefox /etc/apt/preferences.d/mozilla-firefox
 
 RUN apt-get update && yes |apt-get install -y sudo
 
@@ -29,6 +30,5 @@ RUN sudo wget $GEKKO_URL && \
   sudo tar xvfz geckodriver-v"${GEKKO_VERSION}"-linux64.tar.gz && \
   sudo rm geckodriver-v"${GEKKO_VERSION}"-linux64.tar.gz && \
   sudo mv geckodriver ~/.local/bin
-
 
 WORKDIR /home/player1
