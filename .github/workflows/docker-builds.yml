@@ -1,0 +1,126 @@
+name: Build Docker Images
+on:
+  workflow_dispatch:
+    inputs:
+      hub_version:
+        description: 'Hub Version'
+        required: true
+        default: '3.3.0'
+      editor_version:
+        description: 'Editor Version'
+        required: true
+        default: '2022.1.23f1'
+      change_set:
+        description: 'Change Set'
+        required: true
+        default: '9636b062134a'
+      module:
+        description: 'module'
+        required: true
+        default: 'webgl'
+      tag:
+        description: 'Image Tag'
+        required: true
+        default: 'latest'
+      base_image:
+        description: 'Base Image'
+        required: true
+        default: 'nvidia/cuda:12.1.0-base-ubuntu22.04'
+jobs:
+  build-base:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            deserializeme/gcicudabase
+          tags: |
+            "${{github.event.inputs.tag}}"
+          
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          build-args: |
+            ubuntuImage=${{github.event.inputs.base_image}}
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  build-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            deserializeme/gcicudahub
+          tags: |
+            "${{github.event.inputs.tag}}"
+          
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          build-args: |
+            hubVersion=${{github.event.inputs.hub_version}}
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          
+  build-editor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            deserializeme/gcicudaeditor
+          tags: |
+            "${{github.event.inputs.tag}}"
+          
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          build-args: |
+            module=${{github.event.inputs.module}}
+            changeSet=${{github.event.inputs.change_set}}
+            version=${{github.event.inputs.editor_version}}
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
