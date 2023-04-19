@@ -2,7 +2,7 @@ FROM deserializeme/gcicudahub:latest as selenium
 
 COPY sources.list.datapacket /etc/apt/sources.list
 
-RUN apt-get update && yes |apt-get install -y sudo software-properties-common
+RUN apt-get update && yes |apt-get install -y sudo software-properties-common python3-pip
 
 COPY mozilla-firefox /etc/apt/preferences.d/mozilla-firefox
 
