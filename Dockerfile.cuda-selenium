@@ -1,4 +1,4 @@
-ARG hubImage="deserializeme/gcicudahub:latest "
+ARG hubImage="deserializeme/gcicudahub:latest"
 FROM $hubImage as selenium
 
 ARG geckoVersion="0.33.0"
