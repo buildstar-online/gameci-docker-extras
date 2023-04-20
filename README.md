@@ -11,38 +11,37 @@ GameCI images based on [nvidia/cuda:12.1.0-base-ubuntu22.04](https://hub.docker.
 - [Editor](https://hub.docker.com/repository/docker/deserializeme/gcicudaeditor) - 3.83 GB
 - [Hub + Selenium](https://hub.docker.com/repository/docker/deserializeme/gcicudaselenium) - 716.25 MB
 
-## ALF file creation
+## ALF and ULF file creation
 
 ```bash
 EDITOR_VERSION="2022.1.23f1"
 CHANGE_SET="9636b062134a"
 HUB_VERSION="3.3.0"
+USERNAME=""
+PASSWORD=""
 
-touch Unity_v${EDITOR_VERSION}.alf
-
-# Get an alf file
+mkdir -p Downloads && \
+touch Downloads/Unity_v${EDITOR_VERSION}.alf && \
 docker run --rm -it -v $(pwd):/home/player1 \
-    -v $(pwd)/Unity_v${EDITOR_VERSION}.alf:/Unity_v${EDITOR_VERSION}.alf \
+    -v $(pwd)/Downloads/Unity_v${EDITOR_VERSION}.alf:/Unity_v${EDITOR_VERSION}.alf \
+    --user 1000:1000 \
     deserializeme/gcicudaeditor:latest \
     unity-editor -quit \
     -batchmode \
     -nographics \
     -logFile /dev/stdout \
     -createManualActivationFile \
-    -username "YOUR_EMAIL_HERE" \
-    -password "YOUR_PASSWORD_HERE" 
-```
+    -username "$USERNAME" \
+    -password "$PASSWORD"
 
-## Convert ALF to License file
-
-Populate the config.json
-
-```bash
 docker run --rm -it -v $(pwd):/home/player1 \
-    -v $(pwd)/Unity_v${EDITOR_VERSION}.alf:/Unity_v${EDITOR_VERSION}.alf \
+    --user 1000:1000 \
     -v $(pwd)/config.json:/home/player1/config.json \
+    -v $(pwd)/Downloads:/home/player1/Downloads \
+    -e USERNAME="$USERNAME" \
+    -e PASSWORD="$PASSWORD" \
     deserializeme/gcicudaselenium:main \
-    ./license.py *.alf config.json
+    ./license.py Downloads/*.alf config.json
 ```
 
 ## Manually install user-space driver
