@@ -17,15 +17,20 @@ GameCI images based on [nvidia/cuda:12.1.0-base-ubuntu22.04](https://hub.docker.
 EDITOR_VERSION="2022.1.23f1"
 CHANGE_SET="9636b062134a"
 HUB_VERSION="3.3.0"
-USERNAME=""
-PASSWORD=""
+EDITOR_IMAGE="deserializeme/gcicudaeditor:latest"
+SLENIUM_IMAGE="deserializeme/gcicudaselenium:latest"
+USERNAME="emax@cloudydev.net"
+PASSWORD="Trombone0-Ladybug-Directive"
+
+docker pull $EDITOR_IMAGE
+docker pull $SLENIUM_IMAGE
 
 mkdir -p Downloads && \
 touch Downloads/Unity_v${EDITOR_VERSION}.alf && \
 docker run --rm -it -v $(pwd):/home/player1 \
     -v $(pwd)/Downloads/Unity_v${EDITOR_VERSION}.alf:/Unity_v${EDITOR_VERSION}.alf \
     --user 1000:1000 \
-    deserializeme/gcicudaeditor:latest \
+    $EDITOR_IMAGE \
     unity-editor -quit \
     -batchmode \
     -nographics \
@@ -39,7 +44,7 @@ docker run --rm -it -v $(pwd)/config.json:/home/player1/config.json \
     --user 1000:1000 \
     -e USERNAME="$USERNAME" \
     -e PASSWORD="$PASSWORD" \
-    deserializeme/gcicudaselenium:latest \
+    $SLENIUM_IMAGE \
     ./unity-self-auth/license.py Downloads/*.alf config.json
 ```
 
