@@ -34,14 +34,13 @@ docker run --rm -it -v $(pwd):/home/player1 \
     -username "$USERNAME" \
     -password "$PASSWORD"
 
-docker run --rm -it -v $(pwd):/home/player1 \
+docker run --rm -it -v $(pwd)/config.json:/home/player1/config.json \
+    --mount type=bind,source="$(pwd)"/Downloads,target=/home/player1/Downloads \
     --user 1000:1000 \
-    -v $(pwd)/config.json:/home/player1/config.json \
-    -v $(pwd)/Downloads:/home/player1/Downloads \
     -e USERNAME="$USERNAME" \
     -e PASSWORD="$PASSWORD" \
     deserializeme/gcicudaselenium:latest \
-    ./license.py Downloads/*.alf config.json
+    ./unity-self-auth/license.py Downloads/*.alf config.json
 ```
 
 ## Manually install user-space driver
