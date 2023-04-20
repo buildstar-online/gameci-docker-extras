@@ -35,6 +35,16 @@ docker run --rm -it -v $(pwd):/home/player1 \
 
 ## Convert ALF to License file
 
+Populate the config.json
+
+```bash
+docker run --rm -it -v $(pwd):/home/player1 \
+    -v $(pwd)/Unity_v${EDITOR_VERSION}.alf:/Unity_v${EDITOR_VERSION}.alf \
+    -v $(pwd)/config.json:/home/player1/config.json \
+    deserializeme/gcicudaselenium:main \
+    ./license.py *.alf config.json
+```
+
 ## Manually install user-space driver
 
 See [entrypoint.sh](https://github.com/selkies-project/docker-nvidia-glx-desktop/blob/main/entrypoint.sh) from the [docker-nvidia-glx-desktop](https://github.com/selkies-project/docker-nvidia-glx-desktop) for example.
