@@ -40,7 +40,7 @@ docker run --rm -it -v $(pwd):/home/player1 \
     -v $(pwd)/Downloads:/home/player1/Downloads \
     -e USERNAME="$USERNAME" \
     -e PASSWORD="$PASSWORD" \
-    deserializeme/gcicudaselenium:main \
+    deserializeme/gcicudaselenium:latest \
     ./license.py Downloads/*.alf config.json
 ```
 
