@@ -1,6 +1,11 @@
 name: Build Selenium Image
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Image Tag'
+        required: true
+        default: 'latest'
 jobs:
   build-selenium:
     runs-on: self-hosted
