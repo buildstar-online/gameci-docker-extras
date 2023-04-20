@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: clear cache
         run: |
-          docker system prune -a
+          docker system prune -a --force
         shell: bash
 
       - name: Checkout
