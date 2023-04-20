@@ -13,6 +13,8 @@ GameCI images based on [nvidia/cuda:12.1.0-base-ubuntu22.04](https://hub.docker.
 
 ## ALF and ULF file creation
 
+> you will liekly encounter issues if running this from a machine in a region other that the one you have chosen for your unity account. For example, running this on my Hetzner machine in Germany fails because Unity security blocks the login, but runs just from a local machine.
+
 ```bash
 EDITOR_VERSION="2022.1.23f1"
 CHANGE_SET="9636b062134a"
