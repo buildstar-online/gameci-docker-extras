@@ -9,7 +9,7 @@ on:
       base_image:
         description: 'Hub Image'
         required: true
-        default: 'deserializeme/gamecicudahub:latest'
+        default: 'deserializeme/gcicudahub:latest'
 
 jobs:
   build-selenium:
