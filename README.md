@@ -19,8 +19,8 @@ CHANGE_SET="9636b062134a"
 HUB_VERSION="3.3.0"
 EDITOR_IMAGE="deserializeme/gcicudaeditor:latest"
 SLENIUM_IMAGE="deserializeme/gcicudaselenium:latest"
-USERNAME="emax@cloudydev.net"
-PASSWORD="Trombone0-Ladybug-Directive"
+USERNAME=""
+PASSWORD=""
 
 docker pull $EDITOR_IMAGE
 docker pull $SLENIUM_IMAGE
