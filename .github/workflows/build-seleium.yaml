@@ -6,6 +6,11 @@ on:
         description: 'Image Tag'
         required: true
         default: 'latest'
+      base_image:
+        description: 'Hub Image'
+        required: true
+        default: 'deserializeme/gamecicudahub:latest'
+
 jobs:
   build-selenium:
     runs-on: self-hosted
