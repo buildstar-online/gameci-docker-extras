@@ -13,6 +13,8 @@ GameCI images based on [nvidia/cuda:12.1.0-base-ubuntu22.04](https://hub.docker.
 
 ## ALF file creation
 
+Uses the Unity Editor to create .alf file and save it in the Downloads/ folder.
+
 ```bash
 EDITOR_VERSION="2022.1.23f1"
 CHANGE_SET="9636b062134a"
@@ -42,7 +44,9 @@ docker run --rm -it -v $(pwd):/home/player1 \
 
 ## ULF file creation
 
-> you will liekly encounter issues if running this from a machine in a region other that the one you have chosen for your unity account. For example, running this on my Hetzner machine in Germany fails because Unity security blocks the login, but runs just from a local machine.
+Mounts the Downloads/ folder and tries to convert the .alf file to a .ulf license.
+
+> you will liekly encounter issues if running this from a machine in a region other that the one you have chosen for your unity account. For example, running this on my Hetzner machine in Germany fails because Unity security blocks the login, but runs successfully from a local machine.
  
 ```bash
 docker run --rm -it -v $(pwd)/config.json:/home/player1/config.json \
