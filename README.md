@@ -9,7 +9,6 @@ GameCI images based on [nvidia/cuda:12.1.0-base-ubuntu22.04](https://hub.docker.
 - [Base](https://hub.docker.com/repository/docker/deserializeme/gcicudabase) - 228.58 MB
 - [Hub](https://hub.docker.com/repository/docker/deserializeme/gcicudahub) - 503.9 MB
 - [Editor](https://hub.docker.com/repository/docker/deserializeme/gcicudaeditor) - 3.83 GB
-- [Hub + Selenium](https://hub.docker.com/repository/docker/deserializeme/gcicudaselenium) - 716.25 MB
 
 ## Manually install user-space driver
 
