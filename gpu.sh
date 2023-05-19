@@ -139,7 +139,7 @@ create_xorg_conf(){
         # Generate /etc/X11/xorg.conf with nvidia-xconfig
         sudo nvidia-xconfig --virtual="${SIZEW}x${SIZEH}" \
                 --depth="$CDEPTH" \
-                --mode=$(echo"$MODELINE" | awk '{print $2}' | tr -d '"') \
+                --mode=$(echo "$MODELINE" | awk '{print $2}' | tr -d '"') \
                 --allow-empty-initial-configuration \
                 --no-probe-all-gpus \
                 --busid="$BUS_ID" \
