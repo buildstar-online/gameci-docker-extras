@@ -32,7 +32,7 @@ on:
         default: 'sources.list.hetzner'
 jobs:
   build-base:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -67,7 +67,7 @@ jobs:
 
   build-hub:
     needs: build-base
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -101,7 +101,7 @@ jobs:
           
   build-editor:
     needs: [build-hub, build-base]
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
