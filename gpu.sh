@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # Sourece:
-https://github.com/selkies-project/docker-nvidia-glx-desktop/blob/main/entrypoint.sh
+# https://github.com/selkies-project/docker-nvidia-glx-desktop/blob/main/entrypoint.sh
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
