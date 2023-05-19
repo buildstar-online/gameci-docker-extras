@@ -1,4 +1,3 @@
-
 #!/bin/bash -e
 
 # Sourece:
@@ -46,20 +45,17 @@ init(){
         sudo /etc/init.d/dbus start
 
         # Change time zone from environment variable
-        sudo ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" | sudo tee
-/etc/timezone > /dev/null
+        sudo ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" | sudo tee /etc/timezone > /dev/null
 
         # This symbolic link enables running Xorg inside a container with `-sharevts`
         sudo ln -snf /dev/ptmx /dev/tty7
 
         # Allow starting Xorg from a pseudoterminal instead of strictly on a tty console
         if [ ! -f /etc/X11/Xwrapper.config ]; then
-            echo -e "allowed_users=anybody\nneeds_root_rights=yes" | sudo tee
-/etc/X11/Xwrapper.config > /dev/null
+            echo -e "allowed_users=anybody\nneeds_root_rights=yes" | sudo tee /etc/X11/Xwrapper.config > /dev/null
         fi
         if grep -Fxq "allowed_users=console" /etc/X11/Xwrapper.config; then
-          sudo sed -i "s/allowed_users=console/allowed_users=anybody/;$ a
-needs_root_rights=yes" /etc/X11/Xwrapper.config
+          sudo sed -i "s/allowed_users=console/allowed_users=anybody/;$ a needs_root_rights=yes" /etc/X11/Xwrapper.config
         fi
 
         # Remove existing Xorg configuration
@@ -77,13 +73,8 @@ $8}')
           cd /tmp
           # If version is different, new installer will overwrite the existing components
           if [ ! -f "/tmp/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run" ]; then
-            # Check multiple sources in order to probe both consumer and datacenter driver
-versions
-            curl -fsL -O
-"https://us.download.nvidia.com/XFree86/Linux-x86_64/$DRIVER_VERSION/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run"
-|| curl -fsL -O
-"https://us.download.nvidia.com/tesla/$DRIVER_VERSION/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run"
-|| { echo "Failed NVIDIA GPU driver download. Exiting."; exit 1; }
+            # Check multiple sources in order to probe both consumer and datacenter driver versions
+            curl -fsL -O "https://us.download.nvidia.com/XFree86/Linux-x86_64/$DRIVER_VERSION/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run" || curl -fsL -O "https://us.download.nvidia.com/tesla/$DRIVER_VERSION/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run" || { echo "Failed NVIDIA GPU driver download. Exiting."; exit 1; }
           fi
           # Extract installer before installing
           sudo sh "NVIDIA-Linux-x86_64-$DRIVER_VERSION.run" -x
@@ -103,8 +94,7 @@ fi
 
 
 find_gpu(){
-        # Get first GPU device if all devices are available or `NVIDIA_VISIBLE_DEVICES` is
-not set
+        # Get first GPU device if all devices are available or `NVIDIA_VISIBLE_DEVICES` is not set
         if [ "$NVIDIA_VISIBLE_DEVICES" == "all" ]; then
           export GPU_SELECT=$(sudo nvidia-smi --query-gpu=uuid --format=csv | sed -n 2p)
         elif [ -z "$NVIDIA_VISIBLE_DEVICES" ]; then
