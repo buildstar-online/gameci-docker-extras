@@ -68,8 +68,7 @@ install_driver() {
         # Install NVIDIA userspace driver components including X graphic libraries
         if ! command -v nvidia-xconfig &> /dev/null; then
           # Driver version is provided by the kernel through the container toolkit
-          export DRIVER_VERSION=$(head -n1 </proc/driver/nvidia/version | awk '{print
-$8}')
+          export DRIVER_VERSION=$(head -n1 </proc/driver/nvidia/version | awk '{print$8}')
           cd /tmp
           # If version is different, new installer will overwrite the existing components
           if [ ! -f "/tmp/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run" ]; then
