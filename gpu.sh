@@ -99,8 +99,7 @@ find_gpu(){
           export GPU_SELECT=$(sudo nvidia-smi --query-gpu=uuid --format=csv | sed -n 2p)
         # Get first GPU device out of the visible devices in other situations
         else
-          export GPU_SELECT=$(sudo nvidia-smi --id=$(echo "$NVIDIA_VISIBLE_DEVICES" | cut
--d ',' -f1) --query-gpu=uuid --format=csv | sed -n 2p)
+          export GPU_SELECT=$(sudo nvidia-smi --id=$(echo "$NVIDIA_VISIBLE_DEVICES" | cut -d ',' -f1) --query-gpu=uuid --format=csv | sed -n 2p)
           if [ -z "$GPU_SELECT" ]; then
             export GPU_SELECT=$(sudo nvidia-smi --query-gpu=uuid --format=csv | sed -n 2p)
           fi
