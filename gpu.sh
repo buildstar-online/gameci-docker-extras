@@ -88,7 +88,7 @@ install_driver() {
                             --no-backup \
                             --no-check-for-alternate-installs || true
           sudo rm -rf /tmp/NVIDIA* && cd ~
-fi
+        fi
 }
 
 
@@ -124,12 +124,10 @@ find_gpu(){
 }
 
 create_xorg_conf(){
-
         # Bus ID from nvidia-smi is in hexadecimal format, should be converted to decimal
         # format which Xorg understands, required because nvidia-xconfig doesn't work as intended in
         # a container
-        HEX_ID=$(sudo nvidia-smi --query-gpu=pci.bus_id --id="$GPU_SELECT" --format=csv |
-sed -n 2p)
+        HEX_ID=$(sudo nvidia-smi --query-gpu=pci.bus_id --id="$GPU_SELECT" --format=csv |sed -n 2p)
         IFS=":." ARR_ID=($HEX_ID)
         unset IFS
         BUS_ID=PCI:$((16#${ARR_ID[1]})):$((16#${ARR_ID[2]})):$((16#${ARR_ID[3]}))
@@ -139,10 +137,16 @@ sed -n 2p)
         export MODELINE=$(cvt -r "${SIZEW}" "${SIZEH}" "${REFRESH}" | sed -n 2p)
 
         # Generate /etc/X11/xorg.conf with nvidia-xconfig
-        sudo nvidia-xconfig --virtual="${SIZEW}x${SIZEH}" --depth="$CDEPTH" --mode=$(echo
-"$MODELINE" | awk '{print $2}' | tr -d '"') --allow-empty-initial-configuration
---no-probe-all-gpus --busid="$BUS_ID" --no-multigpu --no-sli --no-base-mosaic
---only-one-x-screen ${CONNECTED_MONITOR}
+        sudo nvidia-xconfig --virtual="${SIZEW}x${SIZEH}" \
+                --depth="$CDEPTH" \
+                --mode=$(echo"$MODELINE" | awk '{print $2}' | tr -d '"') \
+                --allow-empty-initial-configuration \
+                --no-probe-all-gpus \
+                --busid="$BUS_ID" \
+                --no-multigpu \
+                --no-sli \
+                --no-base-mosaic \
+                --only-one-x-screen ${CONNECTED_MONITOR}
 
         # Guarantee that the X server starts without a monitor by adding more options to
         # the configuration
