@@ -291,5 +291,30 @@ RUN echo "$version-$module" | grep -q -v '^2021.*linux-il2cpp' \
     lld \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-  
+
+# Install Desktop
+
+RUN apt-get update && yes |apt-get install -y sudo \
+    software-properties-common \
+    python3-pip \
+    xfce4 \
+    xfce4-goodies \
+    xinit \
+    xterm \
+    xvfb \
+    x11vnc \
+    neovim \
+    xfce4-goodies
+
+# Add user to sudoers
+
+RUN echo 'player1 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+    
+RUN sudo mkdir -p /home/player1/.local/bin && \
+    sudo mkdir -p /home/player1/.local/lib && \
+    sudo chown player1:player1 /home/player1/.local/bin && \
+    sudo chown player1:player1 /home/player1/.local/lib
+
+# Swap to user account
 USER player1
+WORKDIR /home/player1/
