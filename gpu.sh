@@ -16,8 +16,7 @@ export APPIMAGE_EXTRACT_AND_RUN=1
 export DISPLAY=:0
 export XDG_RUNTIME_DIR=/tmp/runtime-user
 #export PULSE_SERVER=unix:/run/pulse/native
-export
-LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # Default environment variables (password is "mypasswd")
 export TZ=UTC
