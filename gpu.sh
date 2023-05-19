@@ -135,9 +135,7 @@ create_xorg_conf(){
         export MODELINE=$(cvt -r "${SIZEW}" "${SIZEH}" "${REFRESH}" | sed -n 2p)
 
         # Generate /etc/X11/xorg.conf with nvidia-xconfig
-        sudo nvidia-xconfig --virtual="${SIZEW}x${SIZEH}" \
-                --depth="$CDEPTH" \
-                --mode=$(echo "$MODELINE" | awk '{print $2}' | tr -d '"') \
+        sudo nvidia-xconfig --virtual="${SIZEW}x${SIZEH}" --depth="$CDEPTH" --mode=$(echo "$MODELINE" | awk '{print $2}' | tr -d '"') \
                 --allow-empty-initial-configuration \
                 --no-probe-all-gpus \
                 --busid="$BUS_ID" \
