@@ -154,17 +154,17 @@ create_xorg_conf(){
 
 start_app(){
         tmux new-session -d -s "xorg"
-        tmux send-keys -t "xorg" "export DISPLAY=:0 && Xorg vt7 -noreset -novtswitch -sharevts -dpi ${DPI} +extension GLX +extension RANDR +extension RENDER +extension MIT-SHM ${DISPLAY}"
+        tmux send-keys -t "xorg" "export DISPLAY=:0 && Xorg vt7 -noreset -novtswitch -sharevts -dpi ${DPI} +extension GLX +extension RANDR +extension RENDER +extension MIT-SHM ${DISPLAY}" ENTER
         
         echo "Waiting for X socket"
         until [ -S "/tmp/.X11-unix/X${DISPLAY/:/}" ]; do sleep 1; done
         echo "X socket is ready"
         
         tmux new-session -d -s "x11vnc"
-        tmux send-keys -t "x11vnc" "export DISPLAY=:0 && sudo x11vnc -display ${DISPLAY} -shared -loop -repeat -xkb -snapfb -threads -xrandr resize -rfbport 5900 ${NOVNC_VIEWONLY}"
+        tmux send-keys -t "x11vnc" "export DISPLAY=:0 && sudo x11vnc -display ${DISPLAY} -shared -loop -repeat -xkb -snapfb -threads -xrandr resize -rfbport 5900 ${NOVNC_VIEWONLY}" ENTER
         
         tmux new-session -d -s "app"
-        tmux send-keys -t "app" "startxfce4"
+        tmux send-keys -t "app" "startxfce4" ENTER
 }
 
 init
