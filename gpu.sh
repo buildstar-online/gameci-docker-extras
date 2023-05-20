@@ -167,3 +167,4 @@ init
 find_gpu
 install_driver
 create_xorg_conf
+start_app
