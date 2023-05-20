@@ -152,6 +152,17 @@ create_xorg_conf(){
         sudo sed -i '/Section\s\+"Monitor"/a\    '"$MODELINE" /etc/X11/xorg.conf
 }
 
+start_app(){
+        export DISPLAY=":0"
+        Xorg vt7 -noreset -novtswitch -sharevts -dpi "${DPI}" +extension "GLX" +extension "RANDR" +extension "RENDER" +extension "MIT-SHM" "${DISPLAY}" &
+        
+        echo "Waiting for X socket"
+        until [ -S "/tmp/.X11-unix/X${DISPLAY/:/}" ]; do sleep 1; done
+        echo "X socket is ready"
+        x11vnc -display "${DISPLAY}" -shared -loop -repeat -xkb -snapfb -threads -xrandr "resize" -rfbport 5900 ${NOVNC_VIEWONLY} &
+        startxfce4
+}
+
 init
 find_gpu
 install_driver
