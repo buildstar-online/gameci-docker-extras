@@ -107,3 +107,9 @@ sudo /opt/unity/Editor/Unity -quit \
 # Start Editor
 sudo /opt/unity/Editor/Unity
 ```
+
+8. Enjoy
+
+<img width="986" alt="Screenshot 2023-05-21 at 23 48 56" src="https://github.com/buildstar-online/gameci-docker-extras/assets/84841307/7ac67355-b18c-4e51-b10b-560897e657a4">
+
+
