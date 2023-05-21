@@ -66,5 +66,17 @@ Requires Nvidia drivers + Container Runtime, or GPU Operator to be installed on 
       -e PASSWORD="$PASSWORD" \
       -e HEADLESS="True" \
       $SLENIUM_IMAGE \
-      ./license.py ../Downloads/Unity_v${EDITOR_VERSION}.alf
+      ./license.py "./Downloads/Unity_v${EDITOR_VERSION}.alf"
+  ```
+  
+4. Run the Unity Editor container and mount your project's repo directory as a volume. I'm using https://github.com/buildstar-online/unity-webgl-nginx as an example below.
+
+  ```bash
+  docker run --gpus all --rm -it \
+    -p 5900:5900 \
+    -p 2222:22 \
+    --mount type=bind,source=$(pwd),target=/home/player1/Downloads \
+    --mount type=bind,source=$(pwd)/unity-webgl-nginx,target=/home/player1/unity-webgl-nginx \
+    --user root \
+    $EDITOR_IMAGE
   ```
