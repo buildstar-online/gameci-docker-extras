@@ -6,13 +6,9 @@ GameCI images based on [nvidia/cuda:12.1.0-base-ubuntu22.04](https://hub.docker.
 
 ## Dockerhub Links:
 
-- [Base](https://hub.docker.com/repository/docker/deserializeme/gcicudabase) - 228.58 MB
-- [Hub](https://hub.docker.com/repository/docker/deserializeme/gcicudahub) - 503.9 MB
-- [Editor](https://hub.docker.com/repository/docker/deserializeme/gcicudaeditor) - 3.83 GB
-
-## Manually install user-space driver
-
-See [entrypoint.sh](https://github.com/selkies-project/docker-nvidia-glx-desktop/blob/main/entrypoint.sh) from the [docker-nvidia-glx-desktop](https://github.com/selkies-project/docker-nvidia-glx-desktop) for example.
+- [Base](https://hub.docker.com/repository/docker/deserializeme/gcicudabase) - ~228.58 MB
+- [Hub](https://hub.docker.com/repository/docker/deserializeme/gcicudahub) - ~503.9 MB
+- [Editor](https://hub.docker.com/repository/docker/deserializeme/gcicudaeditor) - ~3.83 GB
 
 ## Host Preparation
 
