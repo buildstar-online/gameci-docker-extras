@@ -35,11 +35,21 @@ export ENABLE_BASIC_AUTH=true
 
 
 init(){
-        sudo apt-get update && sudo apt-get install -y kmod pkg-config tmux
-        sudo -u player1 mkdir -pm700 /tmp/runtime-user
-        sudo chown player1:player1 /tmp/runtime-user
-        sudo -u player1 chmod 700 /tmp/runtime-user
-        sudo chown player1:player1 /home/player1
+        sudo apt-get update && \
+                sudo apt-get install -y kmod \
+                pkg-config \
+                tmux \
+                x11vnc \
+                xvfb \
+                xorg \
+                htop \
+                nvtop \
+                xfce4
+           
+        sudo -u $USER mkdir -pm700 /tmp/runtime-user
+        sudo chown $USER:$USER /tmp/runtime-user
+        sudo -u $USER chmod 700 /tmp/runtime-user
+        sudo chown $USER:$USER /home/$USER
 
         # Start DBus without systemd
         sudo /etc/init.d/dbus start
