@@ -16,6 +16,43 @@ See [entrypoint.sh](https://github.com/selkies-project/docker-nvidia-glx-desktop
 
 ## Host Preparation
 
-Tested on Ubuntu22.04 and Debain12 hosts. See https://github.com/small-hack/smol-metal for instructions.
+> Tested on Ubuntu22.04 and Debain12 hosts.
 
+Requires Nvidia drivers + Container Runtime, or GPU Operator to be installed on the host. See https://github.com/small-hack/smol-metal for instructions.
 
+## Example
+
+1. Log into the docker-host
+
+2. Generate a License
+  - from https://github.com/buildstar-online/unity-webgl-nginx
+
+  ```bash
+  # Create a temporary directoy to work in
+  mkdir -p /tmp/scratch
+  cd /tmp/scratch
+
+  # Export important variables
+  export EDITOR_VERSION="2022.1.23f1"
+  export EDITOR_IMAGE="udeserializeme/gcicudaeditor:latest"
+  export SLENIUM_IMAGE="deserializeme/gcicudaselenium:latest"
+  export USERNAME="YOUR_EMAIL_HERE"
+  export PASSWORD="YOUR_PASSWORD_HERE"
+  
+  # Change ownership of local dir so the container user can save data to mounted volumes
+  chown 1000:1000 .
+  touch Unity_v${EDITOR_VERSION}.alf
+
+  # Generate the ALF file using the Editor 
+  docker run --rm -it -v $(pwd)/Unity_v${EDITOR_VERSION}.alf:/Unity_v${EDITOR_VERSION}.alf \
+      --user root \
+      $EDITOR_IMAGE \
+      unity-editor -quit \
+      -batchmode \
+      -nographics \
+      -logFile /dev/stdout \
+      -createManualActivationFile \
+      -username "$USERNAME" \
+      -password "$PASSWORD"
+  ```
+3. Authorize the License / answer 2fa prompt
