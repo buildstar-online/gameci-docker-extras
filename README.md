@@ -55,4 +55,16 @@ Requires Nvidia drivers + Container Runtime, or GPU Operator to be installed on 
       -username "$USERNAME" \
       -password "$PASSWORD"
   ```
-3. Authorize the License / answer 2fa prompt
+  
+3. Authorize the License or Answer 2FA prompt
+  - Next try to authorize the license. This may fail due to a 2Factor prompt from Unity. If that happens, you will need to run the [grafical login process].
+
+  ```bash
+  docker run --rm -it --user 1000:1000 \
+      --mount type=bind,source="$(pwd)",target=/home/player1/unity-self-auth/Downloads \
+      -e USERNAME="$USERNAME" \
+      -e PASSWORD="$PASSWORD" \
+      -e HEADLESS="True" \
+      $SLENIUM_IMAGE \
+      ./license.py ../Downloads/Unity_v${EDITOR_VERSION}.alf
+  ```
