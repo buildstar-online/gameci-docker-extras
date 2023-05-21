@@ -35,6 +35,7 @@ export ENABLE_BASIC_AUTH=true
 
 
 init(){
+        sudo apt-get update && sudo apt-get install -y kmod pkg-config tmux
         sudo -u player1 mkdir -pm700 /tmp/runtime-user
         sudo chown player1:player1 /tmp/runtime-user
         sudo -u player1 chmod 700 /tmp/runtime-user
