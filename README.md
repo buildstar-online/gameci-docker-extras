@@ -35,7 +35,7 @@ Requires Nvidia drivers + Container Runtime, or GPU Operator to be installed on 
 
     # Export important variables
     export EDITOR_VERSION="2022.1.23f1"
-    export EDITOR_IMAGE="udeserializeme/gcicudaeditor:latest"
+    export EDITOR_IMAGE="deserializeme/gcicudaeditor:latest"
     export SLENIUM_IMAGE="deserializeme/gcicudaselenium:latest"
     export USERNAME="YOUR_EMAIL_HERE"
     export PASSWORD="YOUR_PASSWORD_HERE"
