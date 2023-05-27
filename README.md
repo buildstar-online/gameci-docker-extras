@@ -1,11 +1,8 @@
 # GPU accelerated GameCI docker container
 
-Custom Dockerfile which provides GPU-acceleration on NVIDIA GPU's via the [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/overview.html).
+Custom Dockerfiles which provide GPU-acceleration on NVIDIA GPU's via the [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/overview.html).
 
-Two images are available:
-
-- An image with a pre-downloaded gpu driver. (Faster start-up times, but requires pre-building for your hardware)
-- An image that will install the appropriate drivers during start-up. (Smaller image, but takes a minute or longer to start)
+For best performance, utilize the included workflow to build a custom docker image with container a pre-downloaded and decompress Nvidia driver. This increases the size of the image but reduces start-up time drastically. Alternatively, you may use the generic image with will download, decompress, and install the appropriate driver at run-time. Additionally, a customized remote-desktop image is avaible.
 
 <img width="986" alt="Screenshot 2023-04-20 at 08 09 37" src="https://user-images.githubusercontent.com/84841307/233273510-3e01bb58-1dd6-4e1c-9a0e-405ba8f74dbd.png">
 
