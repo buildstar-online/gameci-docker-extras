@@ -22,9 +22,10 @@ RUN apt-get update && \
   xvfb \
   xorg \
   htop \
-  kde-plasma-desktop && \
+  xfce4 && \
   add-apt-repository -y ppa:mozillateam/ppa && \
   apt-get update && apt-get install -y firefox-esr && \
+  && rm -rf /var/lib/apt/lists/* && \
   wget ${OLD_SSL_DEB} && \
   dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb && \
   rm libssl1.1_1.1.1f-1ubuntu2_amd64.deb && \
@@ -42,7 +43,6 @@ RUN useradd -ms /bin/bash $USER && \
         chown $USER:$USER /home/$USER/.local/bin && \
         chown $USER:$USER /home/$USER/.local/lib && \
         mv /driver.run /home/$USER/driver.run
-
 
 # Swap to user account
 USER $USER
