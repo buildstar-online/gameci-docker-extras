@@ -38,6 +38,8 @@ init(){
         sudo apt-get update && \
                 sudo apt-get install -y kmod \
                 pkg-config \
+                dbus \
+                dbus-x11 \
                 tmux \
                 x11vnc \
                 xvfb \
