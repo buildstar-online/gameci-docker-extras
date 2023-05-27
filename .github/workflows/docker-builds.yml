@@ -9,7 +9,7 @@ on:
       base_image:
         description: 'Base Editor Image'
         required: true
-        default: 'nvidia/cuda:12.1.0-base-ubuntu22.04'
+        default: 'unityci/editor:ubuntu-2022.2.20f1-webgl-1'
 
 jobs:     
   build-editor-image:
@@ -39,9 +39,7 @@ jobs:
         with:
           file: Dockerfile
           build-args: |
-            module=${{github.event.inputs.module}}
-            changeSet=${{github.event.inputs.change_set}}
-            version=${{github.event.inputs.editor_version}}
+            base_image=${{github.event.inputs.base_image}}
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
