@@ -8,8 +8,7 @@ ENV OLD_SSL_DEB="http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1
 COPY mozilla-firefox /etc/apt/preferences.d/mozilla-firefox
 
 # Install deps for Nvidia and Desktop
-RUN apt-get update && \
-  apt-get install -y software-properties-common \
+RUN apt-get update && apt-get install -y software-properties-common \
   kmod \
   sudo \
   pkg-config \
