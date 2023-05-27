@@ -41,21 +41,18 @@ export ENABLE_BASIC_AUTH=true
 
 init(){
         sudo apt-get update && \
-                # Nvidia deps
                 sudo apt-get install -y kmod \
                 pkg-config \
                 make \
                 libvulkan1 \
                 dbus \
                 dbus-x11 \
-                # Desktop deps
                 tmux \
                 x11vnc \
                 xvfb \
                 xorg \
                 htop \
                 xfce4 \
-                # Selenium deps
                 software-properties-common \
                 python3-pip
 
