@@ -76,7 +76,6 @@ install_driver() {
                             --no-backup \
                             --no-check-for-alternate-installs || true
           sudo rm -rf /NVIDIA* && cd ~
-        fi
 }
 
 
