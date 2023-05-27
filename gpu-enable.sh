@@ -38,6 +38,9 @@ init(){
         sudo apt-get update && \
                 sudo apt-get install -y kmod \
                 pkg-config \
+                kmod \
+                make \
+                libvulkan1 \
                 xcvt \
                 dbus \
                 dbus-x11 \
