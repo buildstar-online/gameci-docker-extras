@@ -41,7 +41,6 @@ init(){
                 kmod \
                 make \
                 libvulkan1 \
-                xcvt \
                 dbus \
                 dbus-x11 \
                 tmux \
@@ -49,7 +48,6 @@ init(){
                 xvfb \
                 xorg \
                 htop \
-                nvtop \
                 xfce4
            
         sudo -u $USER mkdir -pm700 /tmp/runtime-user
