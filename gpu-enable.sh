@@ -49,7 +49,9 @@ init(){
                 xorg \
                 htop \
                 xfce4
-           
+        
+        rm /usr/bin/unity-editor
+        ln -s /opt/unity/Editor/Unity /usr/bin/unity-editor
         sudo -u $USER mkdir -pm700 /tmp/runtime-user
         sudo chown $USER:$USER /tmp/runtime-user
         sudo -u $USER chmod 700 /tmp/runtime-user
