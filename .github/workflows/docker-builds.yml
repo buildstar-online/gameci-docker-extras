@@ -23,7 +23,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            deserializeme/gamecx11
+            deserializeme/gamecix11
           tags: |
             "${{github.event.inputs.tag}}"
           
