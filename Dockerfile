@@ -20,6 +20,7 @@ RUN apt-get update && \
   xvfb \
   xorg \
   htop \
+  fonts-liberation \
   xfce4 && \
   wget ${OLD_SSL_DEB} && \
   dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb && \
