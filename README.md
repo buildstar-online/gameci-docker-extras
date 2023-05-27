@@ -1,6 +1,11 @@
-# gameci-docker-extras
+# GPU accelerated GameCI docker container
 
-GameCI images based on [nvidia/cuda:12.1.0-base-ubuntu22.04](https://hub.docker.com/layers/nvidia/cuda/12.1.0-base-ubuntu22.04/images/sha256-972305a2572b3d905756c3ee60364277834d1955d7c8ff4c331e27e4dac9c5cc?context=explore) which provide GPU-acceleration on NVIDIA GPU's via the [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/overview.html). The images still reqire manual installation of the user-space nvidia driver unless used with the [nvidia-gpu-operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/overview.html).
+Custom Dockerfile which provides GPU-acceleration on NVIDIA GPU's via the [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/overview.html).
+
+Two images are available:
+
+- An image with a pre-downloaded gpu driver. (Faster start-up times, but requires pre-building for your hardware)
+- An image that will install the appropriate drivers during start-up. (Smaller image, but takes a minute or longer to start)
 
 <img width="986" alt="Screenshot 2023-04-20 at 08 09 37" src="https://user-images.githubusercontent.com/84841307/233273510-3e01bb58-1dd6-4e1c-9a0e-405ba8f74dbd.png">
 
