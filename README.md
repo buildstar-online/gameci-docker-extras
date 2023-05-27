@@ -9,16 +9,6 @@ Two images are available:
 
 <img width="986" alt="Screenshot 2023-04-20 at 08 09 37" src="https://user-images.githubusercontent.com/84841307/233273510-3e01bb58-1dd6-4e1c-9a0e-405ba8f74dbd.png">
 
-## Dockerhub Links:
-
-- [Base](https://hub.docker.com/repository/docker/deserializeme/gcicudabase) - 228.58 MB
-- [Hub](https://hub.docker.com/repository/docker/deserializeme/gcicudahub) - 503.9 MB
-- [Editor](https://hub.docker.com/repository/docker/deserializeme/gcicudaeditor) - 3.83 GB
-
-## Manually install user-space driver
-
-See [entrypoint.sh](https://github.com/selkies-project/docker-nvidia-glx-desktop/blob/main/entrypoint.sh) from the [docker-nvidia-glx-desktop](https://github.com/selkies-project/docker-nvidia-glx-desktop) for example.
-
 ## Host Preparation
 
 > Tested on Ubuntu22.04 and Debain12 hosts.
