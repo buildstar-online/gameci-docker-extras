@@ -9,7 +9,7 @@ on:
       base_image:
         description: 'Base Editor Image'
         required: true
-        default: 'unityci/editor:ubuntu-2022.2.20f1-webgl-1'
+        default: 'unityci/editor:ubuntu-2022.1.23f1-webgl-1'
 
 jobs:     
   build-editor-image:
@@ -25,7 +25,7 @@ jobs:
           images: |
             deserializeme/gamecix11
           tags: |
-            "${{github.event.inputs.tag}}"
+            ubuntu-2022.1.23f1-webgl-1
           
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
