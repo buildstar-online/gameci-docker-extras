@@ -38,6 +38,7 @@ init(){
         sudo apt-get update && \
                 sudo apt-get install -y kmod \
                 pkg-config \
+                xcvt \
                 dbus \
                 dbus-x11 \
                 tmux \
