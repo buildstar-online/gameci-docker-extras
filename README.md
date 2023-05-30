@@ -1,4 +1,6 @@
-# GPU accelerated GameCI docker containers (WiP)
+# GPU accelerated GameCI docker containers
+
+> work in progess, these docs are only partially complete. 
 
 This repo provides examples of custom Dockerfiles for use with GameCI which provide GPU-acceleration on NVIDIA GPU's via the [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/overview.html). 
 
