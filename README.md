@@ -51,8 +51,13 @@ The new images are built by sourcing from [starndard GameCI editor images](https
 
 Requires Nvidia drivers + Container Runtime, or GPU Operator to be installed on the host. See https://github.com/small-hack/smol-metal for instructions.
 
-## Example
+## Auth notes
+
+- Generate the .alf file
+
 ```bash
+# Dont export usn or pw with quotes
+
 unity-editor -quit \
     -batchmode \
     -nographics \
@@ -60,6 +65,13 @@ unity-editor -quit \
     -createManualActivationFile \
     -username "$USERNAME" \
     -password "$PASSWORD"
+```
+
+- Run selenium 
+
+```bash
+cd unity-self-auth && \
+./license.py ../Unity_v*.alf
 ```
 
 1. Log into the docker-host
