@@ -3,12 +3,14 @@ on:
   workflow_dispatch:
     inputs:
       base_image:
-        description: 'GameCI Editor Image tag'
+        description: 'GameCI Editor Image tag (Required)'
         required: true
         default: 'ubuntu-2022.1.23f1-webgl-1'
-
+      nvidia_driver:
+        description: 'Nvidia driver version (Optional)'
+        default: '525.116.04'
 jobs:     
-  build-editor-image:
+  build-nvidia:
     runs-on: [self-hosted, ax102, nogpu]
     steps:
       - name: Checkout
@@ -34,8 +36,41 @@ jobs:
         with:
           file: Dockerfile
           build-args: |
-            base_image=unityci/editor:${{github.event.inputs.base_image}}
+            EDITOR_IMAGE=unityci/editor:${{github.event.inputs.base_image}}
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: core.harbor.buildstar.online/editor/editor:${{github.event.inputs.base_image}}-nvidia
+          labels: ${{ steps.meta.outputs.labels }}
+
+  build-nvidia-baked:
+    runs-on: [self-hosted, ax102, nogpu]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            core.harbor.buildstar.online/editor/editor
+          
+      - name: Login to Harbor
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v2
+        with:
+          registry: core.harbor.buildstar.online/editor
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          file: Dockerfile.baked
+          build-args: |
+            EDITOR_IMAGE=core.harbor.buildstar.online/editor/editor:${{github.event.inputs.base_image}}-nvidia
+            DRIVER_VERSION=${{github.event.inputs.nvidia_driver}}
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: core.harbor.buildstar.online/editor/editor:${{github.event.inputs.base_image}}-nvidia-${{github.event.inputs.nvidia_driver}}
           labels: ${{ steps.meta.outputs.labels }}
