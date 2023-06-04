@@ -32,8 +32,7 @@ export DPI=96
 export CDEPTH=24
 export VIDEO_PORT=DFP
 export PASSWD=mypasswd
-
-
+export USER=player1
 init(){
         # Start DBus without systemd
         sudo /etc/init.d/dbus start
@@ -166,7 +165,7 @@ start_app(){
         # I will probably switch to using supervisord or docker-systemctl-replacement later as a more
         # stable solution after I'm done making constant changes to the project.
 
-        # Starts an empty Xorg session on DDISPLAY:0
+        # Starts an empty Xorg session on DISPLAY:0
         tmux new-session -d -s "xorg"
         tmux send-keys -t "xorg" "export DISPLAY=:0 && \
         Xorg vt7 \
@@ -194,9 +193,9 @@ start_app(){
         -snapfb \
         -threads \
         -xrandr resize \
-        -passwd "${BASIC_AUTH_PASSWORD:-$PASSWD}" \
         -rfbport 5900 ${NOVNC_VIEWONLY}" ENTER
 
+        # -passwd "${BASIC_AUTH_PASSWORD:-$PASSWD}" \
         # Start the no-vnc session that exposes x11vnc over websocket
         tmux new-session -d -s "novnc"
         tmux send-keys -t "novnc" "export DISPLAY=:0 && \
@@ -209,6 +208,46 @@ start_app(){
         tmux new-session -d -s "app"
         tmux send-keys -t "app" "export DISPLAY=:0 && \
         startxfce4" ENTER
+
+	# Start recording the screen
+	export SESSION=$(date +%Y%m%d%H%M%S)
+        tmux new-session -d -s "ffmpeg"
+        tmux send-keys -t "ffmpeg" "export DISPLAY=:0 && \
+	    ffmpeg -r ${REFRESH} \
+	    -f x11grab \
+	    -draw_mouse 1 \
+	    -s ${SIZEW}x${SIZEH} \
+	    -i ${DISPLAY} \
+	    -c:v h264_nvenc \
+	    -preset 8  \
+	    /home/${USER}/recordings/desktop-${SESSION}.mp4" ENTER
+
+	# Request an alf file
+	sudo unity-editor -quit \
+		-batchmode \
+		-nographics \
+		-logFile /dev/stdout \
+		-createManualActivationFile \
+		-username "$USERNAME" \
+		-password "$PASSWORD"
+
+	# Login and convert alf to ulf
+	cd unity-self-auth 
+	./license.py ../Unity_v*.alf
+
+	# activate the ulf file
+	sudo unity-editor -quit \
+		-batchmode \
+		-nographics \
+		-logFile /dev/stdout \
+		-manualLicenseFile /home/${USER}/Downloads/Unity_v*.x.ulf
+	
+	# start Unity 
+	sudo chown -R ${USER}:${USER} /home/${USER}/	
+	cd ${PROJECT_PATH}
+	tmux new-session -d -s "editor"
+        tmux send-keys -t "editor" "export DISPLAY=:0 && \
+	unity-editor -projectPath ." ENTER
 }
 
 init

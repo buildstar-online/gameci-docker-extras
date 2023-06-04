@@ -15,34 +15,31 @@ COPY mozilla-firefox /etc/apt/preferences.d/mozilla-firefox
 
 # Install deps for Nvidia and Desktop
 RUN apt-get update && \
-        apt-get install -y software-properties-common \
-        sudo \
-        tmux \
-        curl \
-        kmod \
-        pkg-config \
-        make \
-        libvulkan1 \
-        dbus \
-        dbus-x11 \
-        xvfb \
-        xorg \
-        konsole \
-        xinit \
-        xfce4 \
-        xfce4-goodies \
-        tzdata \
-        wget \
-        python3-launchpadlib && \
-        add-apt-repository -y ppa:mozillateam/ppa && \
-        apt-get update && \
-        sudo apt-get install -y firefox-esr && \
-        rm -rf /var/lib/apt/lists/* && \
-        #wget ${OLD_SSL_DEB} && \
-        #dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb && \
-        #rm libssl1.1_1.1.1f-1ubuntu2_amd64.deb && \
-        wget -O /driver.run "https://us.download.nvidia.com/XFree86/Linux-x86_64/$DRIVER_VERSION/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run" && \
-        sh /driver.run -x
+	apt-get install -y software-properties-common \
+	sudo \
+	tmux \
+	curl \
+	kmod \
+	pkg-config \
+	make \
+	libvulkan1 \
+	dbus \
+	dbus-x11 \
+	xvfb \
+	xorg \
+	konsole \
+	xinit \
+	xfce4 \
+	xfce4-goodies \
+	tzdata \
+	wget \
+	python3-launchpadlib && \
+	add-apt-repository -y ppa:mozillateam/ppa && \
+	apt-get update && \
+	sudo apt-get install -y firefox-esr && \
+	rm -rf /var/lib/apt/lists/* && \
+	wget -O /driver.run "https://us.download.nvidia.com/XFree86/Linux-x86_64/$DRIVER_VERSION/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run" && \
+	sh /driver.run -x
 
 # Install NoVNC to expose x11vnc via websocket
 ARG NOVNC_VERSION=1.4.0
@@ -95,7 +92,7 @@ RUN useradd -ms /bin/bash $USER && \
         mkdir -p /home/$USER/.local/lib && \
         chown $USER:$USER /home/$USER/.local/bin && \
         chown $USER:$USER /home/$USER/.local/lib && \
-        mv /driver.run /home/$USER/driver.run
+	mv /driver.run /home/$USER/driver.run
 
 # Swap to user account
 USER $USER
