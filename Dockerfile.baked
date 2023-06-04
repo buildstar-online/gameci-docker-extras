@@ -11,4 +11,7 @@ RUN sudo wget -O /driver.run "https://us.download.nvidia.com/XFree86/Linux-x86_6
 	sudo sh /driver.run -x && \
 	sudo mv /driver.run /home/$USER/driver.run
 
+COPY baked-entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 
