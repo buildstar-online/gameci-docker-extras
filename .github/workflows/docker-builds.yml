@@ -9,7 +9,7 @@ on:
 
 jobs:     
   build-editor-image:
-    runs-on: self-hosted
+    runs-on: [self-hosted, ax102, nogpu]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
