@@ -7,8 +7,8 @@ FROM $EDITOR_IMAGE
 # It should match the driver version fo the node exactly
 ARG DRIVER_VERSION="525.116.04"
 
-RUN wget -O /driver.run "https://us.download.nvidia.com/XFree86/Linux-x86_64/$DRIVER_VERSION/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run" && \
-	sh /driver.run -x && \
-	mv /driver.run /home/$USER/driver.run
+RUN sudo wget -O /driver.run "https://us.download.nvidia.com/XFree86/Linux-x86_64/$DRIVER_VERSION/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run" && \
+	sudo sh /driver.run -x && \
+	sudo mv /driver.run /home/$USER/driver.run
 
 
