@@ -2,18 +2,14 @@ name: Build Docker Images
 on:
   workflow_dispatch:
     inputs:
-      tag:
-        description: 'Image Tag'
-        required: true
-        default: 'latest'
       base_image:
-        description: 'Base Editor Image'
+        description: 'GameCI Editor Image tag'
         required: true
-        default: 'unityci/editor:ubuntu-2022.1.23f1-webgl-1'
+        default: 'ubuntu-2022.1.23f1-webgl-1'
 
 jobs:     
   build-editor-image:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -23,14 +19,13 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            deserializeme/gamecix11
-          tags: |
-            latest
+            core.harbor.buildstar.online/editor/editor
           
-      - name: Login to DockerHub
+      - name: Login to Harbor
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v2
         with:
+          registry: core.harbor.buildstar.online/editor
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
@@ -39,8 +34,8 @@ jobs:
         with:
           file: Dockerfile
           build-args: |
-            base_image=${{github.event.inputs.base_image}}
+            base_image=unityci/editor:${{github.event.inputs.base_image}}
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{github.event.inputs.base_image}}-nvidia
           labels: ${{ steps.meta.outputs.labels }}
