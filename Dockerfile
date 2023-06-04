@@ -1,6 +1,6 @@
 # This is the base unity editor image we will start with
 # pick one from https://hub.docker.com/r/unityci/editor
-ARG EDITOR_IMAGE="unityci/editor:ubuntu-2022.2.20f1-webgl-1"
+ARG EDITOR_IMAGE="unityci/editor:ubuntu-2021.3.18f1-webgl-1"
 FROM $EDITOR_IMAGE
 
 # This is the linux driver version we will install intot he container
