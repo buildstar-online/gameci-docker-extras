@@ -110,6 +110,6 @@ RUN sudo apt-get update && \
    	sudo mv geckodriver ~/.local/bin && \
 	pip3 install -r unity-self-auth/requirements.txt
 
-COPY auth-entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]

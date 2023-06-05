@@ -12,7 +12,7 @@ RUN wget "https://us.download.nvidia.com/XFree86/Linux-x86_64/$DRIVER_VERSION/NV
     sudo rm -rf NVIDIA*.run && \
 	sudo mv NVIDIA* /
 
-COPY baked-entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 
