@@ -18,11 +18,6 @@ export XDG_RUNTIME_DIR=/tmp/runtime-user
 #export PULSE_SERVER=unix:/run/pulse/native
 export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
-# Selenium
-export geckoVersion="0.33.0"
-export geckoUrl="https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz"
-export OLD_SSL_DEB="http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb"
-
 # Default environment variables (password is "mypasswd")
 export TZ=UTC
 export SIZEW=1920
