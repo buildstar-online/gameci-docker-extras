@@ -80,7 +80,7 @@ RUN useradd -ms /bin/bash $USER && \
         echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
         mkdir -p /home/$USER/.local/bin && \
         mkdir -p /home/$USER/.local/lib && \
-        chown $USER:$USER /home/$USER/.local/bin
+        chown -R $USER:$USER /home/$USER/
 
 # Swap to user account
 USER $USER
