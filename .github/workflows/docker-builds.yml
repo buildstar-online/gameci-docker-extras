@@ -11,7 +11,7 @@ on:
         default: '525.116.04'
 jobs:     
   build-nvidia:
-    runs-on: [self-hosted, ax102, nogpu]
+    runs-on: [self-hosted]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
