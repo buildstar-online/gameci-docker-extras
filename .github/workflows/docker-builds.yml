@@ -37,7 +37,7 @@ jobs:
           file: Dockerfile
           build-args: |
             EDITOR_IMAGE=unityci/editor:${{github.event.inputs.base_image}}
-          context: .
+          context: ./editor-nvidia
           push: ${{ github.event_name != 'pull_request' }}
           tags: core.harbor.buildstar.online/editor/editor:${{github.event.inputs.base_image}}-nvidia
           labels: ${{ steps.meta.outputs.labels }}
@@ -67,11 +67,11 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          file: Dockerfile.baked
+          file: Dockerfile
           build-args: |
             EDITOR_IMAGE=core.harbor.buildstar.online/editor/editor:${{github.event.inputs.base_image}}-nvidia
             DRIVER_VERSION=${{github.event.inputs.nvidia_driver}}
-          context: .
+          context: ./editor-nvidia-baked
           push: ${{ github.event_name != 'pull_request' }}
           tags: core.harbor.buildstar.online/editor/editor:${{github.event.inputs.base_image}}-nvidia-${{github.event.inputs.nvidia_driver}}
           labels: ${{ steps.meta.outputs.labels }}
