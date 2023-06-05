@@ -42,7 +42,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
   build-nvidia-baked:
-    runs-on: [self-hosted, ax102, nogpu]
+    runs-on: [self-hosted]
     needs: build-nvidia
     steps:
       - name: Checkout
