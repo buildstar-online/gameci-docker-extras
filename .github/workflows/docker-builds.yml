@@ -21,7 +21,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            core.harbor.buildstar.online/editor/editor
+            deserializeme/editor
           
       - name: Login to dockerhub
         if: github.event_name != 'pull_request'
@@ -33,7 +33,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          file: Dockerfile
+          file: ./editor-nvidia/Dockerfile
           build-args: |
             EDITOR_IMAGE=unityci/editor:${{github.event.inputs.base_image}}
           context: ./editor-nvidia
@@ -65,7 +65,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          file: Dockerfile
+          file: ./editor-nvidia-baked/Dockerfile
           build-args: |
             EDITOR_IMAGE=deserializeme/editor:${{github.event.inputs.base_image}}-nvidia
             DRIVER_VERSION=${{github.event.inputs.nvidia_driver}}
