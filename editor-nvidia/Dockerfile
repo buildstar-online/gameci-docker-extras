@@ -3,6 +3,8 @@
 ARG EDITOR_IMAGE="unityci/editor:ubuntu-2021.3.18f1-webgl-1"
 FROM $EDITOR_IMAGE
 
+ENV NVIDIA_VISIBLE_DEVICES=all
+
 # Required for setting up non-snap firefox
 COPY mozilla-firefox /etc/apt/preferences.d/mozilla-firefox
 
