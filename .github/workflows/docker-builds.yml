@@ -55,13 +55,13 @@ jobs:
           images: |
             deserializeme/editor
           
-      - name: Login to Harbor
+      - name: Login to dockerhub
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          
+
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
@@ -72,4 +72,36 @@ jobs:
           context: ./editor-nvidia-baked
           push: ${{ github.event_name != 'pull_request' }}
           tags: deserializeme/editor:${{github.event.inputs.base_image}}-nvidia-${{github.event.inputs.nvidia_driver}}
+          labels: ${{ steps.meta.outputs.labels }}
+          
+  build-nvidia-baked-auth:
+    runs-on: [self-hosted]
+    needs: build-nvidia-baked
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            deserializeme/editor
+          
+      - name: Login to dockerhub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          file: ./editor-nvidia-baked-auth/Dockerfile
+          build-args: |
+            DRIVER_VERSION=${{github.event.inputs.nvidia_driver}}
+          context: ./editor-nvidia-baked-auth
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: deserializeme/editor:${{github.event.inputs.base_image}}-nvidia-${{github.event.inputs.nvidia_driver}}-auth
           labels: ${{ steps.meta.outputs.labels }}
