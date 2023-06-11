@@ -2,7 +2,8 @@
 # pick one from https://hub.docker.com/r/unityci/editor
 ARG DRIVER_VERSION="525.116.04"
 ARG EDITOR_VERSION="ubuntu-2022.1.23f1-webgl-1"
-ARG EDITOR_IMAGE="deserializeme/$EDITOR_VERSION-nvidia-$DRIVER_VERSION"
+ARG EDITOR_IMAGE="deserializeme/editor:${EDITOR_VERSION}-nvidia-${DRIVER_VERSION}"
+
 FROM $EDITOR_IMAGE
 
 # Install requirements for self-authentication
