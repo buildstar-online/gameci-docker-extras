@@ -1,11 +1,12 @@
-# This is the base unity editor image we will start with
-# pick one from https://hub.docker.com/r/unityci/editor
-ARG EDITOR_IMAGE="deserializeme/editor:ubuntu-2022.1.23f1-webgl-1"
-FROM $EDITOR_IMAGE
-
 # This is the linux driver version we will install intot he container
 # It should match the driver version fo the node exactly
 ARG DRIVER_VERSION="525.116.04"
+
+# This is the base unity editor image we will start with
+# pick one from https://hub.docker.com/r/unityci/editor
+ARG EDITOR_VERSION="ubuntu-2022.1.23f1-webgl-1"
+ARG EDITOR_IMAGE="deserializeme/$EDITOR_VERSION
+FROM $EDITOR_IMAGE
 
 RUN wget "https://us.download.nvidia.com/XFree86/Linux-x86_64/$DRIVER_VERSION/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run" && \
 	sudo sh NVIDIA* -x && \
