@@ -35,7 +35,7 @@ jobs:
         with:
           file: ./editor-nvidia/Dockerfile
           build-args: |
-            EDITOR_IMAGE=unityci/editor:${{github.event.inputs.base_image}}
+            EDITOR_VERSION=${{github.event.inputs.base_image}}
           context: ./editor-nvidia
           push: ${{ github.event_name != 'pull_request' }}
           tags: deserializeme/editor:${{github.event.inputs.base_image}}-nvidia
@@ -67,7 +67,7 @@ jobs:
         with:
           file: ./editor-nvidia-baked/Dockerfile
           build-args: |
-            EDITOR_IMAGE=deserializeme/editor:${{github.event.inputs.base_image}}-nvidia
+            EDITOR_VERSION=${{github.event.inputs.base_image}}
             DRIVER_VERSION=${{github.event.inputs.nvidia_driver}}
           context: ./editor-nvidia-baked
           push: ${{ github.event_name != 'pull_request' }}
