@@ -1,3 +1,8 @@
+# This is the base unity editor image we will start with
+# pick one from https://hub.docker.com/r/unityci/editor
+ARG EDITOR_IMAGE="ubuntu-2022.1.23f1-webgl-1-nvidia-525.116.04"
+FROM $EDITOR_IMAGE
+
 # Install requirements for self-authentication
 ARG geckoVersion="0.33.0"
 ARG geckoUrl="https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz"
