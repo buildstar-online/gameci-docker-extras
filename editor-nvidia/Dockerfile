@@ -90,8 +90,8 @@ USER $USER
 WORKDIR /home/$USER/
 
 # Re-alias to the new unity-editor path
-RUN sudo rm /usr/bin/unity-editor && \
-  sudo ln -s /opt/unity/Editor/Unity /usr/bin/unity-editor
+#RUN sudo rm /usr/bin/unity-editor && \
+#  sudo ln -s /opt/unity/Editor/Unity /usr/bin/unity-editor
 
 COPY entrypoint.sh /entrypoint.sh
 
