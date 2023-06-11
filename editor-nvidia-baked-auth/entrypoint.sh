@@ -247,7 +247,7 @@ start_app(){
 	cd ${PROJECT_PATH}
 	tmux new-session -d -s "editor"
         tmux send-keys -t "editor" "export DISPLAY=:0 && \
-	unity-editor -projectPath ." ENTER
+	/opt/unity/Editor/Unity -projectPath ." ENTER
 }
 
 init
