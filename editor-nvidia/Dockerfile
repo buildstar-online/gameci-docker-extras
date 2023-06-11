@@ -1,6 +1,7 @@
 # This is the base unity editor image we will start with
 # pick one from https://hub.docker.com/r/unityci/editor
-ARG EDITOR_IMAGE="unityci/editor:ubuntu-2021.3.18f1-webgl-1"
+ARG EDITOR_VERSION="ubuntu-2021.3.18f1-webgl-1"
+ARG EDITOR_IMAGE="unityci/editor:$EDITOR_VERSION"
 FROM $EDITOR_IMAGE
 
 ENV NVIDIA_VISIBLE_DEVICES=all
