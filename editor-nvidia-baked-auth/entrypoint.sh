@@ -223,7 +223,7 @@ start_app(){
 	    /home/${USER}/recordings/desktop-${SESSION}.mp4" ENTER
 
 	# Request an alf file
-	sudo unity-editor -quit \
+	unity-editor -quit \
 		-batchmode \
 		-nographics \
 		-logFile /dev/stdout \
@@ -236,7 +236,7 @@ start_app(){
 	./license.py ../Unity_v*.alf
 
 	# activate the ulf file
-	sudo unity-editor -quit \
+	unity-editor -quit \
 		-batchmode \
 		-nographics \
 		-logFile /dev/stdout \
