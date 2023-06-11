@@ -1,6 +1,7 @@
 # This is the base unity editor image we will start with
 # pick one from https://hub.docker.com/r/unityci/editor
-ARG EDITOR_IMAGE="ubuntu-2022.1.23f1-webgl-1-nvidia-525.116.04"
+ARG DRIVER_VERSION="525.116.04"
+ARG EDITOR_IMAGE="ubuntu-2022.1.23f1-webgl-1-nvidia-$DRIVER_VERSION"
 FROM $EDITOR_IMAGE
 
 # Install requirements for self-authentication
