@@ -5,7 +5,7 @@ ARG DRIVER_VERSION="525.116.04"
 # This is the base unity editor image we will start with
 # pick one from https://hub.docker.com/r/unityci/editor
 ARG EDITOR_VERSION="ubuntu-2022.1.23f1-webgl-1"
-ARG EDITOR_IMAGE="deserializeme/$EDITOR_VERSION-nvidia"
+ARG EDITOR_IMAGE="deserializeme/editor:ubuntu-2022.1.23f1-webgl-1-nvidia"
 FROM $EDITOR_IMAGE
 
 RUN wget "https://us.download.nvidia.com/XFree86/Linux-x86_64/$DRIVER_VERSION/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run" && \
