@@ -4,10 +4,23 @@
 
 This repo provides 3 examples of custom Dockerfiles for use with GameCI which provide GPU-acceleration on NVIDIA GPU's via the [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/overview.html). 
 
-
 <p align="center">
   <img width="600" alt="Screenshot 2023-04-20 at 08 09 37" src="https://user-images.githubusercontent.com/84841307/233273510-3e01bb58-1dd6-4e1c-9a0e-405ba8f74dbd.png">
 </p>
+
+## Image Types
+
+1. Standard Images
+  
+    Standard images uses the `entrypoint.sh` script to query the nvidia-container-toolkit for the version of the current driver running on the host machine, then downloads and installs the user-space components into the conatianer. This provides compatibility across disparate hardware, but comes at the cost of a slower start-up time. 
+
+2. Baked Images
+
+    Baked images have had a specific version of the Nvidia driver pre-downloaded and extracted during the build process. This means the runtime components of the driver are available to the container immediately upon boot. This results is a much faster startup at the cost of tying the image to a specific set of hardware and requiring the user to maintain the custom image.
+
+3. Self-Authenticating Images
+    These images contain a selenium-based automation script that will create a new license-file and activate it at startup. This is useful for using the editor images as a remote-desktop session.
+
 
 ## Motivation
 
@@ -35,19 +48,6 @@ The new images are built by sourcing from [starndard GameCI editor images](https
 - Firefox-esr browser (non-snap)
 - Remote access to the grphical display via VNC (port 5900) or browser (port 8080)
 - Nvidia user-space driver components
-
-## Image Types
-
-1. Standard Images
-  
-    Standard images uses the `entrypoint.sh` script to query the nvidia-container-toolkit for the version of the current driver running on the host machine, then downloads and installs the user-space components into the conatianer. This provides compatibility across disparate hardware, but comes at the cost of a slower start-up time. 
-
-2. Baked Images
-
-    Baked images have had a specific version of the Nvidia driver pre-downloaded and extracted during the build process. This means the runtime components of the driver are available to the container immediately upon boot. This results is a much faster startup at the cost of tying the image to a specific set of hardware and requiring the user to maintain the custom image.
-
-3. Self-Authenticating Images
-    These images contain a selenium-based automation script that will create a new license-file and activate it at startup. This is useful for using the editor images as a remote-desktop session.
 
 ## Host Preparation
 
