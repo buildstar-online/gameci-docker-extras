@@ -29,6 +29,7 @@ RUN apt-get update && \
 	xfce4-goodies \
 	tzdata \
 	wget \
+ 	blender \
 	python3-launchpadlib && \
 	add-apt-repository -y ppa:mozillateam/ppa && \
 	apt-get update && \
