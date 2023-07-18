@@ -85,6 +85,24 @@ RUN useradd -ms /bin/bash $USER && \
         mkdir -p /home/$USER/.local/lib && \
         chown -R $USER:$USER /home/$USER/
 
+
+###############################
+#  New Alias to unity-editor  #
+###############################
+RUN /bin/echo -e '#!/bin/bash\n\
+\n\
+if [ -d /usr/bin/unity-editor.d ] ; then\n\
+  for i in /usr/bin/unity-editor.d/*.sh; do\n\
+    if [ -r $i ]; then\n\
+      . $i\n\
+    fi\n\
+  done\n\
+fi\n\
+\n\
+xvfb-run -ae /dev/stdout "$UNITY_PATH/Editor/Unity" "$@"' > /usr/bin/unity-editor \
+  && chmod 755 /usr/bin/unity-editor \
+  && mkdir /usr/bin/unity-editor.d \
+  && echo > ~/.bashrc 
 # Swap to user account
 USER $USER
 WORKDIR /home/$USER/
