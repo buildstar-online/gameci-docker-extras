@@ -97,11 +97,9 @@ if [ -d /usr/bin/unity-editor.d ] ; then\n\
       . $i\n\
     fi\n\
   done\n\
-fi\n\
-\n\
-xvfb-run -ae /dev/stdout "$UNITY_PATH/Editor/Unity" "$@"' > /usr/bin/unity-editor \
+fi
+"$UNITY_PATH/Editor/Unity" -batchmode "$@"' > /usr/bin/unity-editor \
   && chmod 755 /usr/bin/unity-editor \
-  && mkdir /usr/bin/unity-editor.d \
   && echo > ~/.bashrc 
 # Swap to user account
 USER $USER
