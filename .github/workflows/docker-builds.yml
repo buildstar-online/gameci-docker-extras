@@ -11,7 +11,7 @@ on:
         default: '525.116.04'
 jobs:     
   build-nvidia:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -42,7 +42,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
   build-nvidia-baked:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build-nvidia
     steps:
       - name: Checkout
@@ -75,7 +75,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           
   build-nvidia-baked-auth:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build-nvidia-baked
     steps:
       - name: Checkout
