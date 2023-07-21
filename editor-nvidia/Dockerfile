@@ -97,7 +97,7 @@ if [ -d /usr/bin/unity-editor.d ] ; then\n\
       . $i\n\
     fi\n\
   done\n\
-fi
+fi\n\
 "$UNITY_PATH/Editor/Unity" -batchmode "$@"' > /usr/bin/unity-editor \
   && chmod 755 /usr/bin/unity-editor \
   && echo > ~/.bashrc 
