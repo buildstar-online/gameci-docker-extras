@@ -32,6 +32,7 @@ export DPI=96
 export CDEPTH=24
 export VIDEO_PORT=DFP
 export PASSWD=mypasswd
+export RECORD_SCREEN=true
 
 
 init(){
@@ -209,6 +210,21 @@ start_app(){
         tmux new-session -d -s "app"
         tmux send-keys -t "app" "export DISPLAY=:0 && \
         startxfce4" ENTER
+
+	# Start recording the screen
+        if [ "$RECORD_SCREEN" == "true" ]; then
+	        export SESSION=$(date +%Y%m%d%H%M%S)
+                tmux new-session -d -s "ffmpeg"
+                tmux send-keys -t "ffmpeg" "export DISPLAY=:0 && \
+	        ffmpeg -r ${REFRESH} \
+	        -f x11grab \
+	        -draw_mouse 1 \
+	        -s ${SIZEW}x${SIZEH} \
+	        -i ${DISPLAY} \
+	        -c:v h264_nvenc \
+	        -preset 8  \
+	        /home/${USER}/recordings/desktop-${SESSION}.mp4" ENTER
+        fi
 }
 
 init
