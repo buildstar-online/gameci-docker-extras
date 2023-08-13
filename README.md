@@ -7,7 +7,7 @@ This repo provides 3 examples of custom Dockerfiles for use with GameCI which pr
 <p align="center">
   <img width="600" alt="Screenshot 2023-04-20 at 08 09 37" src="https://user-images.githubusercontent.com/84841307/233273510-3e01bb58-1dd6-4e1c-9a0e-405ba8f74dbd.png">
 </p>
-
+  
 ## Image Types
 
 1. Standard Images
@@ -20,6 +20,12 @@ This repo provides 3 examples of custom Dockerfiles for use with GameCI which pr
 
 3. Self-Authenticating Images
     These images contain a selenium-based automation script that will create a new license-file and activate it at startup. This is useful for using the editor images as a remote-desktop session.
+
+## Demo
+
+<p align="center">
+<img width="600" src="https://github.com/buildstar-online/gameci-docker-extras/assets/84841307/531c4882-bf64-4a14-9d16-48975742629d" href="https://www.youtube.com/watch?v=6SmOPCSSoH8">
+</p>
 
 
 ## Motivation
