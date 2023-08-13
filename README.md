@@ -23,9 +23,7 @@ This repo provides 3 examples of custom Dockerfiles for use with GameCI which pr
 
 ## Demo
 
-<p align="center">
-<img width="600" src="https://github.com/buildstar-online/gameci-docker-extras/assets/84841307/531c4882-bf64-4a14-9d16-48975742629d" href="https://www.youtube.com/watch?v=6SmOPCSSoH8">
-</p>
+[![Video Demo](https://img.youtube.com/vi/6SmOPCSSoH8/0.jpg)](https://www.youtube.com/watch?v=6SmOPCSSoH8)
 
 
 ## Motivation
