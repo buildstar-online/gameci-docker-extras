@@ -5,10 +5,10 @@ on:
       base_image:
         description: 'GameCI Editor Image tag (Required)'
         required: true
-        default: 'ubuntu-2022.1.23f1-webgl-2'
+        default: 'ubuntu-2019.4.2f1-linux-il2cpp-1.1.2'
       nvidia_driver:
         description: 'Nvidia driver version (Optional)'
-        default: '525.116.04'
+        default: '525.105.17'
 jobs:     
   build-nvidia:
     runs-on: self-hosted
