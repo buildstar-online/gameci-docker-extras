@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build docker image') {
       steps {
-        sh 'docker run hello-world'
+        sh 'sudo docker run hello-world'
       }
     }
 
