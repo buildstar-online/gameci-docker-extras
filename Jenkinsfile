@@ -3,7 +3,9 @@ pipeline {
   stages {
     stage('build docker image') {
       steps {
-        sh 'sudo docker run hello-world'
+        sh '''
+
+cd editor-nvidia && docker build -it editor . -f  Dockerfile'''
       }
     }
 
