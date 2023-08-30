@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh '''
 
-cd editor-nvidia && docker build -it editor . -f  Dockerfile'''
+cd editor-nvidia && docker build -t editor . -f  Dockerfile'''
       }
     }
 
