@@ -25,8 +25,7 @@ RUN apt-get update && \
 	xorg \
 	konsole \
 	xinit \
-	xfce4 \
-	xfce4-goodies \
+	icewm \
 	tzdata \
 	wget \
 	python3-launchpadlib && \
