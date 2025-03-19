@@ -147,8 +147,6 @@ create_xorg_conf(){
           --allow-empty-initial-configuration \
           --no-probe-all-gpus \
           --busid="$BUS_ID" \
-          --no-multigpu \
-          --no-sli \
           --no-base-mosaic \
           --only-one-x-screen ${CONNECTED_MONITOR}
 
