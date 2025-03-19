@@ -35,7 +35,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 # Install NoVNC to expose x11vnc via websocket
-ARG NOVNC_VERSION=1.4.0
+ARG NOVNC_VERSION=1.5.0
 RUN apt-get update && apt-get install --no-install-recommends -y \
         autoconf \
         automake \
@@ -58,18 +58,11 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
         libxrandr-dev \
         libxss-dev \
         libxtst-dev \
+	x11vnc \
         libavahi-client-dev && \
         rm -rf /var/lib/apt/lists/*
 
-# Build x11vnc for latest
-RUN git clone "https://github.com/LibVNC/x11vnc.git" /tmp/x11vnc && \
-    cd /tmp/x11vnc && \
-    autoreconf -fi && \
-    ./configure && \
-    make install && \
-    cd / && \
-    rm -rf /tmp/* && \
-    curl -fsSL "https://github.com/novnc/noVNC/archive/v${NOVNC_VERSION}.tar.gz" |\
+RUN curl -fsSL "https://github.com/novnc/noVNC/archive/v${NOVNC_VERSION}.tar.gz" |\
     tar -xzf - -C /opt && \
     mv -f "/opt/noVNC-${NOVNC_VERSION}" /opt/noVNC && \
     ln -snf /opt/noVNC/vnc.html /opt/noVNC/index.html && \
